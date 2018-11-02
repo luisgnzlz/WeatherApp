@@ -9,13 +9,35 @@
 import UIKit
 
 class BottomSwipeUpView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    let slideUpDiscrip:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight(rawValue: 400))
+        label.textAlignment = .center
+        label.text = "^ Swipe Up For More Details ^"
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setUpBottomView()
     }
-    */
-
+    
+    func setUpBottomView() {
+        addSubview(slideUpDiscrip)
+        
+        slideUpDiscrip.translatesAutoresizingMaskIntoConstraints = false
+        
+        slideUpDiscrip.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        slideUpDiscrip.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        slideUpDiscrip.widthAnchor.constraint(equalToConstant: 155).isActive = true
+        slideUpDiscrip.heightAnchor.constraint(equalToConstant: 25).isActive = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
