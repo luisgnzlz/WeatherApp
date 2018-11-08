@@ -8,16 +8,16 @@
 
 import UIKit
 
-let infoButton: UIButton = {
-    let button = UIButton(type: .system)
-    button.setImage(UIImage(named: "options"), for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.tintColor = .black
-    button.alpha = 0.8
-    return button
-}()
-
-class topMenuMainView: UIView {
+class TopMenuMainView: UIView {
+    
+    let infoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "options"), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.tintColor = .black
+        button.alpha = 0.8
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

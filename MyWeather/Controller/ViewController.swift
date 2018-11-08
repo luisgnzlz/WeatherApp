@@ -10,18 +10,15 @@ import UIKit
 import Foundation
 import CoreLocation
 
-var bottomConstraint = NSLayoutConstraint()
-var swipeBottomConstraint = NSLayoutConstraint()
-let cardOptions = cardOptionView()
-var cameraContr = cameraViewController()
-
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
+    var bottomConstraint = NSLayoutConstraint()
+    var swipeBottomConstraint = NSLayoutConstraint()
+    let cardOptions = CardOptionView()
     var hideOrshow = false
-    let topMenu = topMenuMainView()
-    let weatherView = mainWeatherView()
+    let topMenu = TopMenuMainView()
+    let weatherView = MainWeatherView()
     let bottomView = BottomSwipeUpView()
-    let camerView = cameraViewController()
     var swipedirection = UISwipeGestureRecognizer.Direction.down
     let Locmanager = CLLocationManager()
     var lat = ""
@@ -31,13 +28,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViewController()
-        
         view.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(dissmissCard)))
         view.backgroundColor = .lightGray
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupViewController()
+        
         self.Locmanager.requestAlwaysAuthorization()
         self.Locmanager.requestWhenInUseAuthorization()
         
@@ -65,7 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     guard let cityname = place.locality, let statename = place.administrativeArea else {
                         return
                     }
-                    self.setupAPI(lati: self.lat, longi: self.long, city: cityname, state: statename)
+                    let apiWeather = weatherAPI(lati: self.lat, longi: self.long, city: cityname, state: statename)
+                    self.weatherView.cityNameLabel.text = "\(apiWeather.city), \(apiWeather.state)"
                 }
             }
         }
@@ -77,8 +75,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(cardOptions)
         view.addSubview(bottomView)
         
-        infoButton.addTarget(self, action: #selector(animateCard), for: .touchUpInside)
-        cameraButton.addTarget(self, action: #selector(presentCamerView), for: .touchUpInside)
+        topMenu.infoButton.addTarget(self, action: #selector(animateCard), for: .touchUpInside)
+        cardOptions.cameraButton.addTarget(self, action: #selector(presentCamerView), for: .touchUpInside)
         
         cardOptions.translatesAutoresizingMaskIntoConstraints = false
         topMenu.translatesAutoresizingMaskIntoConstraints = false
@@ -107,54 +105,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bottomView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    func setupAPI(lati:String, longi:String, city: String, state: String) {
-        let session = URLSession.shared
-        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lati)&lon=\(longi)&units=imperial&APPID={ID}")!
-        print("\(weatherURL)")
-        let dataTask = session.dataTask(with: weatherURL) {
-            (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                print("Error:\n\(error)")
-            } else {
-                if let data = data {
-                    let dataString = String(data: data, encoding: String.Encoding.utf8)
-                    print("All the weather data:\n\(dataString!)")
-                    if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary {
-                        if let mainDictionary = jsonObj!.value(forKey: "main") as? NSDictionary {
-                            if let temperature = mainDictionary.value(forKey: "temp") {
-                                DispatchQueue.main.async {
-                                    let multiplier = pow(10.0, 2.0)
-                                    let roundedTemp = round(temperature as! Double * multiplier) / multiplier
-                                    let correctTemp = lroundl(roundedTemp)
-                                    print(roundedTemp)
-                                    self.weatherView.weatherTextView.text = "\(correctTemp)°"
-                                    self.weatherView.cityNameLabel.text = "\(city), \(state)"
-                                }
-                            }
-                        }
-                        if let mainDictionary = jsonObj!.value(forKey: "sys") as? NSDictionary {
-                            if let sunriseTime = mainDictionary.value(forKey: "sunset") {
-                                DispatchQueue.main.async {
-                                    print(sunriseTime)
-                                    let sunTime = sunriseTime as! Double
-                                    let date = Date(timeIntervalSince1970: (sunTime / 1000.0))
-                                    print("date - \(date)")
-                                }
-                            }
-                        } else {
-                            print("Error: unable to find temperature in dictionary")
-                        }
-                    } else {
-                        print("Error: unable to convert json data")
-                    }
-                } else {
-                    print("Error: did not receive data")
-                }
-            }
-        }
-        dataTask.resume()
     }
     
     @objc func dissmissCard() {
@@ -193,7 +143,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.hideOrshow = false
         }, completion: nil)
         
-        present(camerView, animated: true, completion: nil)
     }
     
 }

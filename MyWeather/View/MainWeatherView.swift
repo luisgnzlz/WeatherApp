@@ -8,7 +8,7 @@
 
 import UIKit
 
-class mainWeatherView: UIView {
+class MainWeatherView: UIView {
     
     let weatherTextView:UILabel = {
         let text = UILabel()

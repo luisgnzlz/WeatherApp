@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA49A656217AD95300F2A343 /* topMenuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA49A655217AD95300F2A343 /* topMenuMainView.swift */; };
-		AA57D9942187E51600D9AAAA /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57D9932187E51600D9AAAA /* cameraViewController.swift */; };
+		AA2F7784218FCE01009467C6 /* WeatherEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F7783218FCE01009467C6 /* WeatherEndPoint.swift */; };
+		AA49A656217AD95300F2A343 /* TopMenuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA49A655217AD95300F2A343 /* TopMenuMainView.swift */; };
 		AAC3FA8C2179381800422CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FA8B2179381800422CE4 /* AppDelegate.swift */; };
 		AAC3FA8E2179381800422CE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FA8D2179381800422CE4 /* ViewController.swift */; };
 		AAC3FA942179381800422CE4 /* MyWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FA922179381800422CE4 /* MyWeather.xcdatamodeld */; };
@@ -16,9 +16,8 @@
 		AAC3FA992179381A00422CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FA972179381A00422CE4 /* LaunchScreen.storyboard */; };
 		AAC3FAA42179381A00422CE4 /* MyWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FAA32179381A00422CE4 /* MyWeatherTests.swift */; };
 		AAC3FAAF2179381A00422CE4 /* MyWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FAAE2179381A00422CE4 /* MyWeatherUITests.swift */; };
-		AAC3FAC021793E0800422CE4 /* mainWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FABF21793E0800422CE4 /* mainWeatherView.swift */; };
-		AACE91ED218538CA006E44F1 /* cardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE91EC218538CA006E44F1 /* cardOptionView.swift */; };
-		AACE91EF218542BB006E44F1 /* optionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE91EE218542BB006E44F1 /* optionFunctions.swift */; };
+		AAC3FAC021793E0800422CE4 /* MainWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3FABF21793E0800422CE4 /* MainWeatherView.swift */; };
+		AACE91ED218538CA006E44F1 /* CardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE91EC218538CA006E44F1 /* CardOptionView.swift */; };
 		AAE74F83218923F9000CC0E7 /* BottomSwipeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE74F82218923F9000CC0E7 /* BottomSwipeUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA49A655217AD95300F2A343 /* topMenuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topMenuMainView.swift; sourceTree = "<group>"; };
-		AA57D9932187E51600D9AAAA /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
+		AA2F7783218FCE01009467C6 /* WeatherEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEndPoint.swift; sourceTree = "<group>"; };
+		AA49A655217AD95300F2A343 /* TopMenuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuMainView.swift; sourceTree = "<group>"; };
 		AAC3FA882179381800422CE4 /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC3FA8B2179381800422CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC3FA8D2179381800422CE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,9 +54,8 @@
 		AAC3FAAA2179381A00422CE4 /* MyWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC3FAAE2179381A00422CE4 /* MyWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherUITests.swift; sourceTree = "<group>"; };
 		AAC3FAB02179381A00422CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAC3FABF21793E0800422CE4 /* mainWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainWeatherView.swift; sourceTree = "<group>"; };
-		AACE91EC218538CA006E44F1 /* cardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardOptionView.swift; sourceTree = "<group>"; };
-		AACE91EE218542BB006E44F1 /* optionFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionFunctions.swift; sourceTree = "<group>"; };
+		AAC3FABF21793E0800422CE4 /* MainWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherView.swift; sourceTree = "<group>"; };
+		AACE91EC218538CA006E44F1 /* CardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOptionView.swift; sourceTree = "<group>"; };
 		AAE74F82218923F9000CC0E7 /* BottomSwipeUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSwipeUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA2F7782218FCDAE009467C6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AA2F7783218FCE01009467C6 /* WeatherEndPoint.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		AAC3FA7F2179381800422CE4 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +118,7 @@
 				AAC3FABE21793DBC00422CE4 /* Model */,
 				AAC3FABD21793DB900422CE4 /* View */,
 				AAC3FABC21793DB500422CE4 /* Controller */,
+				AA2F7782218FCDAE009467C6 /* Networking */,
 				AAC3FA8B2179381800422CE4 /* AppDelegate.swift */,
 				AAC3FA952179381A00422CE4 /* Assets.xcassets */,
 				AAC3FA972179381A00422CE4 /* LaunchScreen.storyboard */,
@@ -143,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC3FA8D2179381800422CE4 /* ViewController.swift */,
-				AA57D9932187E51600D9AAAA /* cameraViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,9 +157,9 @@
 		AAC3FABD21793DB900422CE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AAC3FABF21793E0800422CE4 /* mainWeatherView.swift */,
-				AA49A655217AD95300F2A343 /* topMenuMainView.swift */,
-				AACE91EC218538CA006E44F1 /* cardOptionView.swift */,
+				AAC3FABF21793E0800422CE4 /* MainWeatherView.swift */,
+				AA49A655217AD95300F2A343 /* TopMenuMainView.swift */,
+				AACE91EC218538CA006E44F1 /* CardOptionView.swift */,
 				AAE74F82218923F9000CC0E7 /* BottomSwipeUpView.swift */,
 			);
 			path = View;
@@ -162,7 +168,6 @@
 		AAC3FABE21793DBC00422CE4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AACE91EE218542BB006E44F1 /* optionFunctions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,15 +302,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC3FAC021793E0800422CE4 /* mainWeatherView.swift in Sources */,
+				AAC3FAC021793E0800422CE4 /* MainWeatherView.swift in Sources */,
 				AAC3FA8E2179381800422CE4 /* ViewController.swift in Sources */,
 				AAC3FA8C2179381800422CE4 /* AppDelegate.swift in Sources */,
 				AAC3FA942179381800422CE4 /* MyWeather.xcdatamodeld in Sources */,
-				AA49A656217AD95300F2A343 /* topMenuMainView.swift in Sources */,
-				AA57D9942187E51600D9AAAA /* cameraViewController.swift in Sources */,
+				AA49A656217AD95300F2A343 /* TopMenuMainView.swift in Sources */,
 				AAE74F83218923F9000CC0E7 /* BottomSwipeUpView.swift in Sources */,
-				AACE91EF218542BB006E44F1 /* optionFunctions.swift in Sources */,
-				AACE91ED218538CA006E44F1 /* cardOptionView.swift in Sources */,
+				AACE91ED218538CA006E44F1 /* CardOptionView.swift in Sources */,
+				AA2F7784218FCE01009467C6 /* WeatherEndPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

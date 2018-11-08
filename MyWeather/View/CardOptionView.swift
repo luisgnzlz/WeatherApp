@@ -8,48 +8,49 @@
 
 import UIKit
 
-let cameraButton:UIButton = {
-    let button = UIButton()
-    button.backgroundColor = UIColor.clear
-    button.setTitle("Take Picture For Background", for: .normal)
-    button.setTitleColor(.black, for: .normal)
+class CardOptionView: UIView {
     
-    return button
-}()
-
-let pickPictureButton:UIButton = {
-    let button = UIButton()
-    button.backgroundColor = UIColor.clear
-    button.setTitle("Pick A Picture For Background", for: .normal)
-    button.setTitleColor(.black, for: .normal)
+    let cameraButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clear
+        button.setTitle("Take Picture For Background", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        
+        return button
+    }()
     
-    return button
-}()
-
-let pickColorButton:UIButton = {
-    let button = UIButton()
-    button.backgroundColor = UIColor.clear
-    button.setTitle("Pick A Color For Background", for: .normal)
-    button.setTitleColor(.black, for: .normal)
+    let pickPictureButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clear
+        button.setTitle("Pick A Picture For Background", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        
+        return button
+    }()
     
-    return button
-}()
-
-let cameraLine:UIView = {
-    let view = UIView()
-    view.backgroundColor = .gray
+    let pickColorButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clear
+        button.setTitle("Pick A Color For Background", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        
+        return button
+    }()
     
-    return view
-}()
-
-let colorLine:UIView = {
-    let view = UIView()
-    view.backgroundColor = .gray
+    let cameraLine:UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        
+        return view
+    }()
     
-    return view
-}()
-
-class cardOptionView: UIView {
+    let colorLine:UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
