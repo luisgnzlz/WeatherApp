@@ -8,25 +8,27 @@
 
 import Foundation
 
-struct weatherAPI {
+final class weatherAPI {
     
     let session = URLSession.shared
     var lati:String
     var longi:String
     var city:String
     var state:String
-    let mainView = MainWeatherView()
+    var weatherURL:URL
+    var weather:String
     
     init(lati:String, longi:String, city:String, state:String) {
         self.lati = lati
         self.longi = longi
         self.city = city
         self.state = state
+        self.weatherURL = (URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(self.lati)&lon=\(self.longi)&units=imperial&APPID=01dfd7a79576fd7292bef57bfb4c1923"))!
+        self.weather = ""
     }
     
     
      func setupAPI() {
-        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lati)&lon=\(longi)&units=imperial&APPID=01dfd7a79576fd7292bef57bfb4c1923")!
         let dataTask = session.dataTask(with: weatherURL) {
             (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
@@ -39,13 +41,12 @@ struct weatherAPI {
                         if let mainDictionary = jsonObj!.value(forKey: "main") as? NSDictionary {
                             if let temperature = mainDictionary.value(forKey: "temp") {
                                 DispatchQueue.main.async {
+                                    
                                     let multiplier = pow(10.0, 2.0)
                                     let roundedTemp = round(temperature as! Double * multiplier) / multiplier
-                                    let correctTemp = lroundl(Float80(roundedTemp))
-                                    //print(roundedTemp)
-                                   // self.weatherView.cityNameLabel.text = "\(city), \(state)"
-                                    print(correctTemp)
-                                    self.mainView.weatherTextView.text = "hi)"
+                                    let correctTemp = lround(roundedTemp)
+                                    let temperatureString = self.getTemp(temp: correctTemp)
+                                    print(temperatureString)
                                 }
                             }
                         }
@@ -70,5 +71,11 @@ struct weatherAPI {
             }
         }
         dataTask.resume()
+    }
+    
+    func getTemp(temp:Int) -> String {
+        let tempInString = "\(temp)"
+        
+        return tempInString
     }
 }

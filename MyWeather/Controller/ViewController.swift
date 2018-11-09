@@ -27,12 +27,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(dissmissCard)))
-        view.backgroundColor = .lightGray
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         setupViewController()
         
         self.Locmanager.requestAlwaysAuthorization()
@@ -43,6 +37,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             Locmanager.desiredAccuracy = kCLLocationAccuracyBest
             Locmanager.startUpdatingLocation()
         }
+        
+        view.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(dissmissCard)))
+        view.backgroundColor = .lightGray
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -64,6 +61,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let apiWeather = weatherAPI(lati: self.lat, longi: self.long, city: cityname, state: statename)
                     self.weatherView.cityNameLabel.text = "\(apiWeather.city), \(apiWeather.state)"
+                    let cool = apiWeather.setupAPI()
+                    print("\(cool)")
                 }
             }
         }
