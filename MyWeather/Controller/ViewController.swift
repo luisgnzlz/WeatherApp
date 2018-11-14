@@ -61,8 +61,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let apiWeather = weatherAPI(lati: self.lat, longi: self.long, city: cityname, state: statename)
                     self.weatherView.cityNameLabel.text = "\(apiWeather.city), \(apiWeather.state)"
-                    let cool = apiWeather.setupAPI()
-                    print("\(cool)")
                 }
             }
         }
