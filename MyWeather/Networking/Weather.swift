@@ -12,4 +12,9 @@ struct Weather: Decodable {
     let coord: [String: Double]
     let main: [String: Double]
 
+    init(coord:[String:Double], main:[String:Double]) {
+        self.coord = coord
+        self.main = main
+    }
+    
 }

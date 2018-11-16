@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     var bottomConstraint = NSLayoutConstraint()
     var swipeBottomConstraint = NSLayoutConstraint()
@@ -59,8 +59,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     guard let cityname = place.locality, let statename = place.administrativeArea else {
                         return
                     }
-                    let apiWeather = weatherAPI(lati: self.lat, longi: self.long, city: cityname, state: statename)
-                    self.weatherView.cityNameLabel.text = "\(apiWeather.city), \(apiWeather.state)"
+                    let blah:(Weather) -> Void = {_ in
+                        let cool = Weather.self
+                        print(cool)
+                    }
+                    
+                    let apiWeather = weatherAPI(lati: self.lat, longi: self.long)
+                    self.weatherView.cityNameLabel.text = "\(cityname), \(statename)"
+                    apiWeather.setupAPI(oncompletion: blah)
                 }
             }
         }

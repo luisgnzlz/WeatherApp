@@ -11,29 +11,25 @@ import Foundation
 final class weatherAPI {
     
     let session = URLSession.shared
-    var lati:String
-    var longi:String
-    var city:String
-    var state:String
+    let lat:String
+    let long:String
     var weatherURL:URL
     
-    init(lati:String, longi:String, city:String, state:String) {
-        self.lati = lati
-        self.longi = longi
-        self.city = city
-        self.state = state
-        self.weatherURL = (URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(self.lati)&lon=\(self.longi)&units=imperial&APPID=01dfd7a79576fd7292bef57bfb4c1923"))!
-        setupAPI()
+    init(lati:String, longi:String) {
+        self.lat = lati
+        self.long = longi
+        weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(self.lat)&lon=\(self.long)&units=imperial&APPID=01dfd7a79576fd7292bef57bfb4c1923")!
     }
     
-     func setupAPI() {
-        URLSession.shared.dataTask(with: weatherURL) { (data, response, err) in
+    func setupAPI(oncompletion: @escaping (Weather) -> Void) {
+        session.dataTask(with: weatherURL) { (data, response, err) in
             guard let data = data else { return }
-            
             do {
                 let weather = try
                                 JSONDecoder().decode(Weather.self, from: data)
-                print(weather.main["temp"] as Any)
+                guard let trueWeather = weather.main["temp"] else { return }
+                oncompletion(weather)
+                print(trueWeather)
             } catch let jsonErr {
                 print(jsonErr)
             }
@@ -41,4 +37,5 @@ final class weatherAPI {
             print(dataString as Any)
         }.resume()
     }
+
 }
