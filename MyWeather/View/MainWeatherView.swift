@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MainWeatherView: UIView {
+final class MainWeatherView: UIView {
     
-    let weatherTextView:UILabel = {
+     let weatherTextView:UILabel = {
         let text = UILabel()
         text.backgroundColor = UIColor.clear
         text.textColor = .white
@@ -19,7 +19,7 @@ class MainWeatherView: UIView {
         return text
     }()
     
-    let cityNameLabel:UILabel = {
+     let cityNameLabel:UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.clear
         label.textColor = .white
@@ -30,7 +30,6 @@ class MainWeatherView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupView()
     }
     
@@ -38,7 +37,7 @@ class MainWeatherView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    private func setupView() {
         addSubview(weatherTextView)
         addSubview(cityNameLabel)
         weatherTextView.translatesAutoresizingMaskIntoConstraints = false

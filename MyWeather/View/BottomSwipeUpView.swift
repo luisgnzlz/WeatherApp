@@ -25,7 +25,7 @@ class BottomSwipeUpView: UIView {
         setUpBottomView()
     }
     
-    func setUpBottomView() {
+    private func setUpBottomView() {
         addSubview(slideUpDiscrip)
         
         slideUpDiscrip.translatesAutoresizingMaskIntoConstraints = false

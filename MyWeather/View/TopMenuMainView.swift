@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopMenuMainView: UIView {
+final class TopMenuMainView: UIView {
     
     let infoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -27,7 +27,7 @@ class TopMenuMainView: UIView {
         
     }
     
-    func setViewOfTop() {
+    private func setViewOfTop() {
         addSubview(infoButton)
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         

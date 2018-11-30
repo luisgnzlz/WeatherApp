@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CardOptionView: UIView {
+final class CardOptionView: UIView {
     
-    let cameraButton:UIButton = {
+     let cameraButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         button.setTitle("Take Picture For Background", for: .normal)
@@ -19,7 +19,7 @@ class CardOptionView: UIView {
         return button
     }()
     
-    let pickPictureButton:UIButton = {
+     let pickPictureButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         button.setTitle("Pick A Picture For Background", for: .normal)
@@ -28,7 +28,7 @@ class CardOptionView: UIView {
         return button
     }()
     
-    let pickColorButton:UIButton = {
+     let pickColorButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
         button.setTitle("Pick A Color For Background", for: .normal)
@@ -37,14 +37,14 @@ class CardOptionView: UIView {
         return button
     }()
     
-    let cameraLine:UIView = {
+    private let cameraLine:UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         
         return view
     }()
     
-    let colorLine:UIView = {
+    private let colorLine:UIView = {
         let view = UIView()
         view.backgroundColor = .gray
         
@@ -58,7 +58,7 @@ class CardOptionView: UIView {
         setCardView()
     }
     
-    func setCardView() {
+    private func setCardView() {
         addSubview(cameraButton)
         addSubview(pickPictureButton)
         addSubview(cameraLine)

@@ -10,11 +10,12 @@ import Foundation
 
 struct Weather: Decodable {
     let coord: [String: Double]
+    var weather: [[String:Int]] = []
     let main: [String: Double]
+    let wind: [String: Double]
+    let sys: [String: Double]?
+    let humidity: Int
+    let visibility: Int
 
-    init(coord:[String:Double], main:[String:Double]) {
-        self.coord = coord
-        self.main = main
-    }
-    
+
 }
