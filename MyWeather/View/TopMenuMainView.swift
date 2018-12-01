@@ -22,9 +22,11 @@ final class TopMenuMainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
-        //backgroundColor = UIColor(white: 0.9, alpha: 0.3)
         setViewOfTop()
-        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setViewOfTop() {
@@ -35,10 +37,5 @@ final class TopMenuMainView: UIView {
         infoButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/8).isActive = true
         infoButton.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
 }

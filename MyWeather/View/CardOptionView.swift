@@ -58,6 +58,10 @@ final class CardOptionView: UIView {
         setCardView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func setCardView() {
         addSubview(cameraButton)
         addSubview(pickPictureButton)
@@ -100,7 +104,4 @@ final class CardOptionView: UIView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

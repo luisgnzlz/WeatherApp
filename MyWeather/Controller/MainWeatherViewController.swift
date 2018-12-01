@@ -14,6 +14,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     var bottomConstraint:NSLayoutConstraint?
     var swipeBottomConstraint:NSLayoutConstraint?
+    var swipeMoreWeather:NSLayoutConstraint?
     let cardOptions = CardOptionView()
     var hideOrshow = false
     let topMenu = TopMenuMainView()
@@ -21,14 +22,16 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     let bottomView = BottomSwipeUpView()
     let moreInfo = MoreWeatherDataView()
     let Locmanager = CLLocationManager()
-    var lat = ""
-    var long = ""
-    var city = ""
+    let upSwipe = UISwipeGestureRecognizer.Direction.up
+    let downSwipe = UISwipeGestureRecognizer.Direction.down
+    var showMoreWeather:UISwipeGestureRecognizer?
+    var hideMoreInfo:UISwipeGestureRecognizer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .lightGray
         setupViewController()
-        
+        addSwipes()
         self.Locmanager.requestAlwaysAuthorization()
         self.Locmanager.requestWhenInUseAuthorization()
         
@@ -37,9 +40,6 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
             Locmanager.desiredAccuracy = kCLLocationAccuracyBest
             Locmanager.startUpdatingLocation()
         }
-        
-        view.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: #selector(dissmissCard)))
-        view.backgroundColor = .lightGray
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -48,8 +48,8 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         print("My location = \(locationValue.latitude)\(locationValue.longitude)")
-        lat = String(locationValue.latitude)
-        long = String(locationValue.longitude)
+        let lat = String(locationValue.latitude)
+        let long = String(locationValue.longitude)
         
         CLGeocoder().reverseGeocodeLocation(locations[0]) { (placemark, error) in
             if error != nil {
@@ -60,16 +60,20 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     guard let cityname = place.locality, let statename = place.administrativeArea else {
                         return
                     }
-                    let setWeatherInfo:(Weather) -> Void = { sweet in
-                        guard let trueWeather = sweet.main["temp"] else { return }
+                    
+                    let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
                         DispatchQueue.main.async {
-                            self.weatherView.weatherTextView.text = "\(trueWeather)"
+                            self.weatherView.weatherTextView.text = "\(Int(round(currentWeather.main.currentTemperature)))°"
+                            self.moreInfo.minWeather.text = "Min temp: \(Int(round(currentWeather.main.minTemperature)))°"
+                            self.moreInfo.maxWeather.text = "Max temp: \(Int(round(currentWeather.main.maxTemperature)))°"
+                            self.moreInfo.humidity.text = "Humidity: \(currentWeather.main.humidity)%"
+                            self.moreInfo.airPressure.text = "Pressure: \(currentWeather.main.pressure) hpa"
                         }
                     }
                     
-                    let apiWeather = WeatherAPI(lati: self.lat, longi: self.long)
+                    let apiWeather = WeatherAPI()
                     self.weatherView.cityNameLabel.text = "\(cityname), \(statename)"
-                    _ = apiWeather.setupAPI(oncompletion: setWeatherInfo)
+                    apiWeather.setupAPI(longitude: long, latitude: lat, oncompletion: setWeatherInfo)
                 }
             }
         }
@@ -93,6 +97,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         bottomConstraint = cardOptions.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 600)
         swipeBottomConstraint = bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        swipeMoreWeather = moreInfo.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 600)
         
         bottomConstraint?.isActive = true
         cardOptions.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3).isActive = true
@@ -114,10 +119,36 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bottomView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        swipeMoreWeather?.isActive = true
         moreInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        moreInfo.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        moreInfo.safeAreaLayoutGuide.topAnchor.constraint(equalTo: topMenu.bottomAnchor, constant: 100).isActive = true
+        moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2).isActive = true
+        
+    }
+    
+    func addSwipes() {
+        showMoreWeather = UISwipeGestureRecognizer(target: self, action: #selector(presentMoreWeatherData))
+        showMoreWeather?.direction = upSwipe
+        hideMoreInfo = UISwipeGestureRecognizer(target: self, action: #selector(hideWeatherInfo))
+        hideMoreInfo?.direction = downSwipe
+        view.addGestureRecognizer(showMoreWeather!)
+        view.addGestureRecognizer(hideMoreInfo!)
+    }
+    
+    @objc func presentMoreWeatherData() {
+        swipeMoreWeather?.constant = -10
+        swipeBottomConstraint?.constant = 200
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @objc func hideWeatherInfo() {
+        swipeMoreWeather?.constant = 600
+        swipeBottomConstraint?.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     @objc func dissmissCard() {
