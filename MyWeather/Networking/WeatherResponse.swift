@@ -10,4 +10,7 @@ import Foundation
 
 struct WeatherResponse: Codable {
     var main: Weather
+    var wind: Wind
+    var weather: [Description]
+    var sys: TimeWeather
 }

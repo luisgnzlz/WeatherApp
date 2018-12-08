@@ -16,9 +16,9 @@ struct Weather: Codable {
         case minTemperature = "temp_min"
         case maxTemperature = "temp_max"
     }
-    var currentTemperature: Double
-    var pressure: Int
-    var humidity: Int
-    var minTemperature: Double
-    var maxTemperature: Double
+    var currentTemperature: Double?
+    var pressure: Int?
+    var humidity: Int?
+    var minTemperature: Double?
+    var maxTemperature: Double?
 }

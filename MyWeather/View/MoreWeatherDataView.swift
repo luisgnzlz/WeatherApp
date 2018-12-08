@@ -78,7 +78,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
         return label
     }()
     
@@ -87,7 +87,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
         return label
     }()
     
@@ -102,7 +102,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
         return label
     }()
     
@@ -111,7 +111,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
         return label
     }()
     
@@ -126,7 +126,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
         return label
     }()
     
@@ -157,6 +157,7 @@ final class MoreWeatherDataView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0.098, green: 0.098, blue: 0.098, alpha: 0.8)
+        layer.cornerRadius = 10
         setUpMoreWeather()
     }
     
