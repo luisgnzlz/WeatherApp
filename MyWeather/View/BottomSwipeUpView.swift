@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BottomSwipeUpView: UIView {
+final class BottomSwipeUpView: UIView {
     
     let slideUpDiscrip:UILabel = {
         let label = UILabel()
@@ -25,7 +25,11 @@ class BottomSwipeUpView: UIView {
         setUpBottomView()
     }
     
-    func setUpBottomView() {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpBottomView() {
         addSubview(slideUpDiscrip)
         
         slideUpDiscrip.translatesAutoresizingMaskIntoConstraints = false
@@ -34,10 +38,6 @@ class BottomSwipeUpView: UIView {
         slideUpDiscrip.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         slideUpDiscrip.widthAnchor.constraint(equalToConstant: 155).isActive = true
         slideUpDiscrip.heightAnchor.constraint(equalToConstant: 25).isActive = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }
