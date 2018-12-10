@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Description: Codable {
+struct WeatherDescription: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case shortHand = "main"
         case description
         case icon
     }
-    var id:Int?
-    var shortHand:String?
-    var description:String?
-    var icon:String?
+    var id: Int
+    var shortHand: String
+    var description: String
+    var icon: String
 }

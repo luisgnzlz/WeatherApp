@@ -15,7 +15,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.text = "test"
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -30,7 +30,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.text = "test"
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -39,7 +39,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -48,7 +48,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -63,7 +63,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.text = "this is a test"
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 25)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 25)
         return label
     }()
     
@@ -78,7 +78,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -87,7 +87,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -102,7 +102,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -111,7 +111,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     
@@ -126,7 +126,7 @@ final class MoreWeatherDataView: UIView {
         label.textColor = .white
         label.text = "this is a test"
         label.textAlignment = .center
-        label.font = UIFontMetrics.default.scaledFont(for: UIFont(name: "PingFangSC-Thin", size: 18)!)
+        label.font = UIFont(name: "PingFangSC-Thin", size: 18)
         return label
     }()
     

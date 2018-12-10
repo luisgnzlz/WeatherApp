@@ -13,6 +13,6 @@ struct Wind: Codable {
         case speed
         case degree = "deg"
     }
-    var speed: Double?
-    var degree:Double?
+    var speed: Double
+    var degree: Double
 }

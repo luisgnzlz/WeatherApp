@@ -75,70 +75,10 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
-                        guard let icon = currentWeather.weather[0].icon else {return}
+                        let icon = currentWeather.weather[0].icon
                         apiWeather.getWeatherImage(iconName: icon, oncompletion: weatherIconImage)
-
                         DispatchQueue.main.async {
-                            if let currentTemp = currentWeather.main.currentTemperature {
-                                self.weatherView.weatherTextView.text = "\(Int(round(currentTemp)))°"
-                            } else {
-                                self.weatherView.weatherTextView.text = "--"
-                            }
-                            
-                            if let minTemp = currentWeather.main.minTemperature {
-                                self.moreInfo.minWeather.text = "Min temp: \(Int(round(minTemp)))°"
-                            } else {
-                                self.moreInfo.minWeather.text = "Min temp: --"
-                            }
-                            
-                            if let maxTemp = currentWeather.main.maxTemperature {
-                                self.moreInfo.maxWeather.text = "Max temp: \(Int(round(maxTemp)))°"
-                            } else {
-                                self.moreInfo.maxWeather.text = "Max temp: --"
-                            }
-                            
-                            if let humidity = currentWeather.main.humidity {
-                                self.moreInfo.humidity.text = "Humidity: \(humidity)%"
-                            } else {
-                                self.moreInfo.humidity.text = "Humidity: --"
-                            }
-                            
-                            if let pressure = currentWeather.main.pressure {
-                                self.moreInfo.airPressure.text = "Pressure: \(pressure) hpa"
-                            } else {
-                                self.moreInfo.airPressure.text = "Pressure: --"
-                            }
-                            
-                            if let windSpeed = currentWeather.wind.speed {
-                                self.moreInfo.windSpeed.text = "Wind Speed: \(Int(round(windSpeed)))m/h"
-                            } else {
-                                self.moreInfo.windSpeed.text = "Wind Speed: --"
-                            }
-                            
-                            if let deg = currentWeather.wind.degree {
-                                self.moreInfo.windDegree.text = "Wind Degree: \(Int(round(deg)))"
-                            } else {
-                                self.moreInfo.windDegree.text = "Wind Degree: --"
-                            }
-                            
-                            if let descip = currentWeather.weather[0].description {
-                                self.moreInfo.descriptionWeather.text = descip.capitalized
-                            } else {
-                                self.moreInfo.descriptionWeather.text = "--"
-                            }
-                            
-                            if let sunset = currentWeather.sys.sunset {
-                                self.moreInfo.sunset.text = "Sunset: \(sunset)"
-                            } else {
-                                self.moreInfo.sunset.text = "Sunset: --"
-                            }
-                            
-                            if let sunrise = currentWeather.sys.sunrise {
-                                self.moreInfo.sunrise.text = "Sunrise: \(sunrise)"
-                            } else {
-                                self.moreInfo.sunrise.text = "Sunrise: --"
-                            }
- 
+                            self.displayWeatherInfo(currentWeather: currentWeather)
                         }
                     }
                     
@@ -200,6 +140,39 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3).isActive = true
         
+    }
+    
+    func displayWeatherInfo(currentWeather: WeatherResponse) {
+        
+            let currentTemp = currentWeather.main.currentTemperature
+            weatherView.weatherTextView.text = "\(Int(round(currentTemp)))°"
+            
+            let minTemp = currentWeather.main.minTemperature
+            moreInfo.minWeather.text = "Min temp: \(Int(round(minTemp)))°"
+            
+            let maxTemp = currentWeather.main.maxTemperature
+            moreInfo.maxWeather.text = "Max temp: \(Int(round(maxTemp)))°"
+            
+            let humidity = currentWeather.main.humidity
+            moreInfo.humidity.text = "Humidity: \(humidity)%"
+            
+            let pressure = currentWeather.main.pressure
+            moreInfo.airPressure.text = "Pressure: \(pressure) hpa"
+            
+            let windSpeed = currentWeather.wind.speed
+            moreInfo.windSpeed.text = "Wind Speed: \(Int(round(windSpeed)))m/h"
+            
+            let deg = currentWeather.wind.degree
+            moreInfo.windDegree.text = "Wind Degree: \(Int(round(deg)))"
+            
+            let descip = currentWeather.weather[0].description
+            moreInfo.descriptionWeather.text = descip.capitalized
+            
+            let sunset = currentWeather.time.sunset
+            moreInfo.sunset.text = "Sunset: \(sunset)"
+            
+            let sunrise = currentWeather.time.sunrise
+            moreInfo.sunrise.text = "Sunrise: \(sunrise)"
     }
     
     func addSwipes() {

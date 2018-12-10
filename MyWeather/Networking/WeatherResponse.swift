@@ -9,8 +9,14 @@
 import Foundation
 
 struct WeatherResponse: Codable {
+     enum  CodingKeys: String, CodingKey{
+        case main
+        case wind
+        case weather
+        case time = "sys"
+    }
     var main: Weather
     var wind: Wind
-    var weather: [Description]
-    var sys: TimeWeather
+    var weather: [WeatherDescription]
+    var time: TimeWeather
 }

@@ -18,11 +18,11 @@ struct TimeWeather: Codable {
         case sunset
     }
     
-    var type:Int?
-    var id: Int?
-    var message:Double?
-    var country:String?
-    var sunrise:Int?
-    var sunset:Int?
+    var type: Int
+    var id: Int
+    var message: Double
+    var country: String
+    var sunrise: Int
+    var sunset: Int
     
 }
