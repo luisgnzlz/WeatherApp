@@ -68,7 +68,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let apiWeather = WeatherAPI()
                     
-                    let weatherIconImage:(UIImage) -> Void = { iconImage in
+                    let setWeatherIconImage:(UIImage) -> Void = { iconImage in
                         DispatchQueue.main.async {
                             self.imageIcon.image = iconImage
                         }
@@ -76,7 +76,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
                         let icon = currentWeather.weather[0].icon
-                        apiWeather.getWeatherImage(iconName: icon, oncompletion: weatherIconImage)
+                        apiWeather.getWeatherImage(iconName: icon, onCompletion: setWeatherIconImage)
                         DispatchQueue.main.async {
                             self.displayWeatherInfo(currentWeather: currentWeather)
                         }
@@ -143,36 +143,26 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayWeatherInfo(currentWeather: WeatherResponse) {
-        
             let currentTemp = currentWeather.main.currentTemperature
-            weatherView.weatherTextView.text = "\(Int(round(currentTemp)))°"
-            
+                weatherView.weatherTextView.text = "\(Int(round(currentTemp)))°"
             let minTemp = currentWeather.main.minTemperature
-            moreInfo.minWeather.text = "Min temp: \(Int(round(minTemp)))°"
-            
+                moreInfo.minWeather.text = "Min temp: \(Int(round(minTemp)))°"
             let maxTemp = currentWeather.main.maxTemperature
-            moreInfo.maxWeather.text = "Max temp: \(Int(round(maxTemp)))°"
-            
+                moreInfo.maxWeather.text = "Max temp: \(Int(round(maxTemp)))°"
             let humidity = currentWeather.main.humidity
-            moreInfo.humidity.text = "Humidity: \(humidity)%"
-            
+                moreInfo.humidity.text = "Humidity: \(humidity)%"
             let pressure = currentWeather.main.pressure
-            moreInfo.airPressure.text = "Pressure: \(pressure) hpa"
-            
+                moreInfo.airPressure.text = "Pressure: \(pressure) hpa"
             let windSpeed = currentWeather.wind.speed
-            moreInfo.windSpeed.text = "Wind Speed: \(Int(round(windSpeed)))m/h"
-            
+                moreInfo.windSpeed.text = "Wind Speed: \(Int(round(windSpeed)))m/h"
             let deg = currentWeather.wind.degree
-            moreInfo.windDegree.text = "Wind Degree: \(Int(round(deg)))"
-            
+                moreInfo.windDegree.text = "Wind Degree: \(Int(round(deg)))"
             let descip = currentWeather.weather[0].description
-            moreInfo.descriptionWeather.text = descip.capitalized
-            
+                moreInfo.descriptionWeather.text = descip.capitalized
             let sunset = currentWeather.time.sunset
-            moreInfo.sunset.text = "Sunset: \(sunset)"
-            
+                moreInfo.sunset.text = "Sunset: \(sunset)"
             let sunrise = currentWeather.time.sunrise
-            moreInfo.sunrise.text = "Sunrise: \(sunrise)"
+                moreInfo.sunrise.text = "Sunrise: \(sunrise)"
     }
     
     func addSwipes() {

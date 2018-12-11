@@ -10,9 +10,7 @@ import Foundation
 
 struct WeatherResponse: Codable {
      enum  CodingKeys: String, CodingKey{
-        case main
-        case wind
-        case weather
+        case main, wind, weather
         case time = "sys"
     }
     var main: Weather

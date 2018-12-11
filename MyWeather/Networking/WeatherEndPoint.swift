@@ -28,15 +28,13 @@ final class WeatherAPI {
         }.resume()
     }
 
-    func getWeatherImage(iconName:String, oncompletion: @escaping (UIImage) -> Void) {
+    func getWeatherImage(iconName:String, onCompletion: @escaping (UIImage) -> Void) {
         let urlDetails = "https://openweathermap.org/img/w/"+iconName+".png"
         guard let url = URL(string:urlDetails) else { return }
         session.dataTask(with: url) { (data, response, err) in
             guard let data = data else { return }
-            do {
                 guard let iconImage = UIImage(data: data) else {return}
-                oncompletion(iconImage)
-            }
-            }.resume()
+                onCompletion(iconImage)
+        }.resume()
     }
 }

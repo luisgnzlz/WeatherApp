@@ -11,8 +11,7 @@ import Foundation
 struct Weather: Codable {
     enum CodingKeys: String, CodingKey {
         case currentTemperature = "temp"
-        case pressure
-        case humidity
+        case pressure, humidity
         case minTemperature = "temp_min"
         case maxTemperature = "temp_max"
     }

@@ -10,10 +10,8 @@ import Foundation
 
 struct WeatherDescription: Codable {
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, description, icon
         case shortHand = "main"
-        case description
-        case icon
     }
     var id: Int
     var shortHand: String
