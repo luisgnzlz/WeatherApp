@@ -53,7 +53,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
         
-        print("My location= \(locationValue.latitude)\(locationValue.longitude)")
+        print("My location: \(locationValue.latitude)\(locationValue.longitude)")
         let lat = String(locationValue.latitude)
         let long = String(locationValue.longitude)
         
