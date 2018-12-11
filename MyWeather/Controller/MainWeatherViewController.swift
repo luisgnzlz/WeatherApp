@@ -26,10 +26,16 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     let downSwipe = UISwipeGestureRecognizer.Direction.down
     var showMoreWeather:UISwipeGestureRecognizer?
     var hideMoreInfo:UISwipeGestureRecognizer?
+    
+    var imageIcon:UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(red: 0.314, green: 0.475, blue: 0.969, alpha: 1.00)
         setupViewController()
         addSwipes()
         self.Locmanager.requestAlwaysAuthorization()
@@ -60,26 +66,31 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     guard let cityname = place.locality, let statename = place.administrativeArea else {
                         return
                     }
+                    let apiWeather = WeatherAPI()
                     
-                    let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
+                    let setWeatherIconImage:(UIImage) -> Void = { iconImage in
                         DispatchQueue.main.async {
-                            self.weatherView.weatherTextView.text = "\(Int(round(currentWeather.main.currentTemperature)))°"
-                            self.moreInfo.minWeather.text = "Min temp: \(Int(round(currentWeather.main.minTemperature)))°"
-                            self.moreInfo.maxWeather.text = "Max temp: \(Int(round(currentWeather.main.maxTemperature)))°"
-                            self.moreInfo.humidity.text = "Humidity: \(currentWeather.main.humidity)%"
-                            self.moreInfo.airPressure.text = "Pressure: \(currentWeather.main.pressure) hpa"
+                            self.imageIcon.image = iconImage
                         }
                     }
                     
-                    let apiWeather = WeatherAPI()
+                    let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
+                        let icon = currentWeather.weather[0].icon
+                        apiWeather.getWeatherImage(iconName: icon, onCompletion: setWeatherIconImage)
+                        DispatchQueue.main.async {
+                            self.displayWeatherInfo(currentWeather: currentWeather)
+                        }
+                    }
+                    
                     self.weatherView.cityNameLabel.text = "\(cityname), \(statename)"
-                    apiWeather.setupAPI(longitude: long, latitude: lat, oncompletion: setWeatherInfo)
+                    apiWeather.weatherInfo(longitude: long, latitude: lat, onCompletion: setWeatherInfo)
                 }
             }
         }
     }
     
     func setupViewController() {
+        view.addSubview(imageIcon)
         view.addSubview(weatherView)
         view.addSubview(topMenu)
         view.addSubview(cardOptions)
@@ -104,6 +115,11 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         cardOptions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         cardOptions.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         
+        imageIcon.translatesAutoresizingMaskIntoConstraints = false
+        imageIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        imageIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        imageIcon.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4).isActive = true
+        
         topMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         topMenu.heightAnchor.constraint(equalToConstant: 50).isActive = true
         topMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -120,10 +136,33 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         bottomView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         swipeMoreWeather?.isActive = true
-        moreInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/2).isActive = true
+        moreInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
+        moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
+        moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3).isActive = true
         
+    }
+    
+    func displayWeatherInfo(currentWeather: WeatherResponse) {
+            let currentTemp = currentWeather.main.currentTemperature
+                weatherView.weatherTextView.text = "\(Int(round(currentTemp)))°"
+            let minTemp = currentWeather.main.minTemperature
+                moreInfo.minWeather.text = "Min temp: \(Int(round(minTemp)))°"
+            let maxTemp = currentWeather.main.maxTemperature
+                moreInfo.maxWeather.text = "Max temp: \(Int(round(maxTemp)))°"
+            let humidity = currentWeather.main.humidity
+                moreInfo.humidity.text = "Humidity: \(humidity)%"
+            let pressure = currentWeather.main.pressure
+                moreInfo.airPressure.text = "Pressure: \(pressure) hpa"
+            let windSpeed = currentWeather.wind.speed
+                moreInfo.windSpeed.text = "Wind Speed: \(Int(round(windSpeed)))m/h"
+            let deg = currentWeather.wind.degree
+                moreInfo.windDegree.text = "Wind Degree: \(Int(round(deg)))"
+            let descip = currentWeather.weather[0].description
+                moreInfo.descriptionWeather.text = descip.capitalized
+            let sunset = currentWeather.time.sunset
+                moreInfo.sunset.text = "Sunset: \(sunset)"
+            let sunrise = currentWeather.time.sunrise
+                moreInfo.sunrise.text = "Sunrise: \(sunrise)"
     }
     
     func addSwipes() {
@@ -136,7 +175,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func presentMoreWeatherData() {
-        swipeMoreWeather?.constant = -10
+        swipeMoreWeather?.constant = -20
         swipeBottomConstraint?.constant = 200
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
