@@ -10,10 +10,10 @@ import UIKit
 
 final class CardOptionView: UIView {
     
-     let cameraButton:UIButton = {
+     let quickWeatherButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.clear
-        button.setTitle("Take Picture For Background", for: .normal)
+        button.setTitle("Check Other City Weather", for: .normal)
         button.setTitleColor(.black, for: .normal)
         
         return button
@@ -53,7 +53,7 @@ final class CardOptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = UIColor(white: 0.8, alpha: 0.8)
         layer.cornerRadius = 12
         setCardView()
     }
@@ -63,23 +63,23 @@ final class CardOptionView: UIView {
     }
     
     private func setCardView() {
-        addSubview(cameraButton)
+        addSubview(quickWeatherButton)
         addSubview(pickPictureButton)
         addSubview(cameraLine)
         addSubview(colorLine)
         addSubview(pickColorButton)
-        cameraButton.translatesAutoresizingMaskIntoConstraints = false
+        quickWeatherButton.translatesAutoresizingMaskIntoConstraints = false
         pickPictureButton.translatesAutoresizingMaskIntoConstraints = false
         cameraLine.translatesAutoresizingMaskIntoConstraints = false
         colorLine.translatesAutoresizingMaskIntoConstraints = false
         pickColorButton.translatesAutoresizingMaskIntoConstraints = false
         
-        cameraButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        cameraButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
-        cameraButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
-        cameraButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        quickWeatherButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        quickWeatherButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
+        quickWeatherButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        quickWeatherButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
-        cameraLine.topAnchor.constraint(equalTo: cameraButton.bottomAnchor, constant: 5).isActive = true
+        cameraLine.topAnchor.constraint(equalTo: quickWeatherButton.bottomAnchor, constant: 5).isActive = true
         cameraLine.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
         cameraLine.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         cameraLine.heightAnchor.constraint(equalToConstant: 2).isActive = true

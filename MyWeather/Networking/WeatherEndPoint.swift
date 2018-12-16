@@ -27,6 +27,21 @@ final class WeatherAPI {
             }
         }.resume()
     }
+    
+    func weatherInfowithCity(cityName: String, onCompletion: @escaping (WeatherResponse) -> Void) {
+        let urlDetails = "/data/2.5/weather?q=\(cityName)&units=imperial&APPID=01dfd7a79576fd7292bef57bfb4c1923"
+        guard let url = URL(string: baseUrl + urlDetails) else { return }
+        session.dataTask(with: url) { (data, response, err) in
+            guard let data = data else { return }
+            do {
+                let weather = try
+                    JSONDecoder().decode(WeatherResponse.self, from: data)
+                onCompletion(weather)
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            }.resume()
+    }
 
     func getWeatherImage(iconName:String, onCompletion: @escaping (UIImage) -> Void) {
         let urlDetails = "https://openweathermap.org/img/w/"+iconName+".png"
