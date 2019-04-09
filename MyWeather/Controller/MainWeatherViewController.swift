@@ -88,6 +88,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     let setWeatherInfo:(WeatherResponse) -> Void = { currentWeather in
+                        print(currentWeather.main.currentTemperature)
                         let icon = currentWeather.weather[0].icon
                         self.apiWeather.getWeatherImage(iconName: icon, onCompletion: setWeatherIconImage)
                         DispatchQueue.main.async {
@@ -191,9 +192,11 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
             let descip = currentWeather.weather[0].description
                 moreInfo.descriptionWeather.text = descip.capitalized
             let sunset = currentWeather.time.sunset
-                moreInfo.sunset.text = "Sunset: \(sunset)"
+            let sunsetTime = sunsetSunriseTimeSet(convertTime: Double(sunset))
+                moreInfo.sunset.text = "Sunset: \(sunsetTime)"
             let sunrise = currentWeather.time.sunrise
-                moreInfo.sunrise.text = "Sunrise: \(sunrise)"
+            let sunriseTime = sunsetSunriseTimeSet(convertTime: Double(sunrise))
+                moreInfo.sunrise.text = "Sunrise: \(sunriseTime)"
     }
     
     func addSwipesAndTaps() {
@@ -206,6 +209,16 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         backgroundView.addGestureRecognizer(returnNormal!)
         view.addGestureRecognizer(showMoreWeather!)
         view.addGestureRecognizer(hideMoreInfo!)
+    }
+    
+    func sunsetSunriseTimeSet(convertTime: Double) -> String {
+        let sunsetDate = Date(timeIntervalSince1970: Double(convertTime))
+        let sunsetDateFormatter = DateFormatter()
+        sunsetDateFormatter.timeZone = TimeZone(abbreviation: "UTC/GMT") //Set timezone that you want
+        sunsetDateFormatter.locale = NSLocale.current
+        sunsetDateFormatter.dateFormat = "HH:mm" //Specify your format that you want
+        let sunsetData = sunsetDateFormatter.string(from: sunsetDate)
+        return sunsetData
     }
     
     @objc func presentMoreWeatherData() {
