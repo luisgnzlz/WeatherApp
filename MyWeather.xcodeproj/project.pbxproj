@@ -261,13 +261,16 @@
 				TargetAttributes = {
 					AAC3FA872179381800422CE4 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					AAC3FA9E2179381A00422CE4 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = AAC3FA872179381800422CE4;
 					};
 					AAC3FAA92179381A00422CE4 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = AAC3FA872179381800422CE4;
 					};
 				};
@@ -507,14 +510,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5BA5DMXQLT;
 				INFOPLIST_FILE = MyWeather/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -526,14 +529,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5BA5DMXQLT;
 				INFOPLIST_FILE = MyWeather/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -553,7 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyWeather.app/MyWeather";
 			};
@@ -574,7 +577,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyWeather.app/MyWeather";
 			};
@@ -594,7 +597,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeatherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MyWeather;
 			};
@@ -614,7 +617,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LGJ.MyWeatherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MyWeather;
 			};
