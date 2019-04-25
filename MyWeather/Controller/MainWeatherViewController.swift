@@ -19,6 +19,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     var quickWeatherWidth:NSLayoutConstraint?
     var backgroundHeight:NSLayoutConstraint?
     var backgroundWidth:NSLayoutConstraint?
+    let weekForcast = WeekForcast()
     let cardOptions = CardOptionView()
     var hideOrshow = false
     let apiWeather = WeatherAPI()
@@ -52,6 +53,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = UIColor(red: 0.314, green: 0.475, blue: 0.969, alpha: 1.00)
         setupViewController()
         addSwipesAndTaps()
+        
         self.Locmanager.requestAlwaysAuthorization()
         self.Locmanager.requestWhenInUseAuthorization()
         
@@ -100,10 +102,12 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                     self.apiWeather.weatherInfo(longitude: long, latitude: lat, onCompletion: setWeatherInfo)
                 }
             }
+            self.weekForcast.displayWeekForcst()
         }
     }
     
     func setupViewController() {
+
         view.addSubview(backgroundView)
         view.addSubview(imageIcon)
         view.addSubview(weatherView)
@@ -144,8 +148,8 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         imageIcon.translatesAutoresizingMaskIntoConstraints = false
         imageIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        imageIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        imageIcon.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4).isActive = true
+        imageIcon.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -40).isActive = true
+        imageIcon.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/6).isActive = true
         
         topMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         topMenu.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -165,7 +169,7 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         swipeMoreWeather?.isActive = true
         moreInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
-        moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3).isActive = true
+        moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3, constant: -10).isActive = true
         
         quickWeatherHeight?.isActive = true
         quickWeatherWidth?.isActive = true
@@ -193,10 +197,10 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                 moreInfo.descriptionWeather.text = descip.capitalized
             let sunset = currentWeather.time.sunset
             let sunsetTime = sunsetSunriseTimeSet(convertTime: Double(sunset))
-                moreInfo.sunset.text = "Sunset: \(sunsetTime)"
+                moreInfo.sunset.text = "Sunset: \(sunsetTime) pm"
             let sunrise = currentWeather.time.sunrise
             let sunriseTime = sunsetSunriseTimeSet(convertTime: Double(sunrise))
-                moreInfo.sunrise.text = "Sunrise: \(sunriseTime)"
+                moreInfo.sunrise.text = "Sunrise: \(sunriseTime) am"
     }
     
     func addSwipesAndTaps() {
@@ -214,9 +218,9 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
     func sunsetSunriseTimeSet(convertTime: Double) -> String {
         let sunsetDate = Date(timeIntervalSince1970: Double(convertTime))
         let sunsetDateFormatter = DateFormatter()
-        sunsetDateFormatter.timeZone = TimeZone(abbreviation: "UTC/GMT") //Set timezone that you want
+        sunsetDateFormatter.timeZone = TimeZone(abbreviation: "UTC/GMT")
         sunsetDateFormatter.locale = NSLocale.current
-        sunsetDateFormatter.dateFormat = "HH:mm" //Specify your format that you want
+        sunsetDateFormatter.dateFormat = "hh:mm"
         let sunsetData = sunsetDateFormatter.string(from: sunsetDate)
         return sunsetData
     }
