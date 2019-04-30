@@ -98,6 +98,10 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                     
+                    let fiveDayForecast:(WeatherResponse) -> Void = { currentWeather in
+                        
+                    }
+                    
                     self.weatherView.cityNameLabel.text = "\(cityname), \(statename)"
                     self.apiWeather.weatherInfo(longitude: long, latitude: lat, onCompletion: setWeatherInfo)
                 }

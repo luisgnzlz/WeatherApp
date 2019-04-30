@@ -53,3 +53,7 @@ final class WeatherAPI {
         }.resume()
     }
 }
+
+func getWeekWeather(longitude: String, latitude: String, onCompletion: @escaping (WeatherResponse) -> Void) {
+    
+}
