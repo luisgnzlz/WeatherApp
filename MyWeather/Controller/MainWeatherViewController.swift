@@ -141,6 +141,11 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         backgroundHeight = backgroundView.heightAnchor.constraint(equalToConstant: 0)
         backgroundWidth = backgroundView.widthAnchor.constraint(equalToConstant: 0)
         
+        quickWeatherHeight?.isActive = true
+        quickWeatherWidth?.isActive = true
+        quickWeatherView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        quickWeatherView.topAnchor.constraint(equalTo: topMenu.bottomAnchor, constant: 10).isActive = true
+        
         backgroundHeight?.isActive = true
         backgroundWidth?.isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -174,11 +179,6 @@ class MainWeatherViewController: UIViewController, CLLocationManagerDelegate {
         moreInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         moreInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         moreInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3, constant: -10).isActive = true
-        
-        quickWeatherHeight?.isActive = true
-        quickWeatherWidth?.isActive = true
-        quickWeatherView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        quickWeatherView.topAnchor.constraint(equalTo: topMenu.bottomAnchor, constant: 10).isActive = true
         
     }
     

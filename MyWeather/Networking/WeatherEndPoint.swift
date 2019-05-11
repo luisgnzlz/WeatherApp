@@ -21,6 +21,7 @@ final class WeatherAPI {
             do {
                 let weather = try
                                 JSONDecoder().decode(WeatherResponse.self, from: data)
+                print(weather)
                 onCompletion(weather)
             } catch let jsonErr {
                 print(jsonErr)
