@@ -16,7 +16,7 @@ class WeekForcast: NSObject, UICollectionViewDelegateFlowLayout, UICollectionVie
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let CView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        CView.backgroundColor = .clear
+        CView.backgroundColor = .green
         return CView
     }()
     
@@ -37,9 +37,9 @@ class WeekForcast: NSObject, UICollectionViewDelegateFlowLayout, UICollectionVie
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
-    }
+   // func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //return CGSize(width: 150, height: 150)
+   // }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

@@ -58,13 +58,13 @@ class QuickWeatherView: UIView {
         showQuickMainWeather.translatesAutoresizingMaskIntoConstraints = false
         
         searchBarTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        searchBarTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
+        searchBarTextField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor).isActive = true
         searchBarTextField.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         searchBarTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         searchButton.leadingAnchor.constraint(equalTo: searchBarTextField.trailingAnchor).isActive = true
-        searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        searchButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         searchButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         showQuickMainWeather.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
